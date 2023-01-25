@@ -92,7 +92,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             and str(module.__class__).split(".")[-1].split("'")[0] != "Chomp1d"
             and str(module.__class__).split(".")[-1].split("'")[0] != "WeightNorm"
             and str(module.__class__).split(".")[-1].split("'")[0] != "Dropout"
-            and str(module.__class__).split(".")[-1].split("'")[0] != "TemporalBlock"
+            # and str(module.__class__).split(".")[-1].split("'")[0] != "TemporalBlock"
             # and module.__class__.__name__ != "SamePadConv"
             # and module.__class__.__name__ != "ConvBlock"
         ):  
