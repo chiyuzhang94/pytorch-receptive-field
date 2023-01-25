@@ -32,6 +32,9 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             p_key = "%i" % (module_idx - 1)
             receptive_field[m_key] = OrderedDict()
 
+            print("m_key", m_key)
+            print("receptive_field", receptive_field)
+
             if not receptive_field["0"]["conv_stage"]:
                 print("Enter in deconv_stage")
                 receptive_field[m_key]["j"] = 0
@@ -119,6 +122,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
     hooks = []
 
     print(receptive_field)
+
     # register hook
     model.apply(register_hook)
 

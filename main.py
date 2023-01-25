@@ -62,5 +62,5 @@ receptive_field_for_unit(receptive_field_dict, "2", (1,1,1))
 
 
 model = Net1D().to(device)
-receptive_field_dict = receptive_field(model, (3, 16, 16, 16))
+receptive_field_dict = receptive_field(model, (3, 16, 16))
 receptive_field_for_unit(receptive_field_dict, "2", (1,1,1))
