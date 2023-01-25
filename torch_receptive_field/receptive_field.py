@@ -32,16 +32,12 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             p_key = "%i" % (module_idx - 1)
             receptive_field[m_key] = OrderedDict()
 
-            print("m_key", m_key)
-            print("receptive_field", receptive_field)
-
             if not receptive_field["0"]["conv_stage"]:
                 print("Enter in deconv_stage")
                 receptive_field[m_key]["j"] = 0
                 receptive_field[m_key]["r"] = 0
                 receptive_field[m_key]["start"] = 0
             else:
-                print("p_key", p_key)
                 p_j = receptive_field[p_key]["j"]
                 p_r = receptive_field[p_key]["r"]
                 p_start = receptive_field[p_key]["start"]
@@ -96,7 +92,6 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             and module.__class__.__name__ != "Dropout"
             and module.__class__.__name__ != "TemporalBlock"
         ):  
-            print("module", module)
             hooks.append(module.register_forward_hook(hook))
 
     device = device.lower()
@@ -127,7 +122,6 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
     receptive_field["0"]["output_shape"][0] = batch_size
     hooks = []
 
-    print(receptive_field)
 
     # register hook
     model.apply(register_hook)
