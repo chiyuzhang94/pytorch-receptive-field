@@ -91,6 +91,8 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             and module.__class__.__name__ != "WeightNorm"
             and module.__class__.__name__ != "Dropout"
             and module.__class__.__name__ != "TemporalBlock"
+            and module.__class__.__name__ != "SamePadConv"
+            and module.__class__.__name__ != "ConvBlock"
         ):  
             hooks.append(module.register_forward_hook(hook))
 
