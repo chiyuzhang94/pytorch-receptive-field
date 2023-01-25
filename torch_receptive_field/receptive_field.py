@@ -85,11 +85,11 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
 
         print(module.__class__.__name__)
         if (
-            not isinstance(module, nn.Sequential)
+            # not isinstance(module, nn.Sequential)
             # and not isinstance(module, nn.ModuleList)
             # and not (module == model)
             # and not isinstance(module, nn.Linear)
-            and module.__class__.__name__ != "Chomp1d"
+             module.__class__.__name__ != "Chomp1d"
             and module.__class__.__name__ != "WeightNorm"
             and module.__class__.__name__ != "Dropout"
             and module.__class__.__name__ != "TemporalBlock"
