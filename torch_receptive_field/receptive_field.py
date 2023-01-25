@@ -83,14 +83,14 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
                 receptive_field[m_key]["output_shape"] = list(output.size())
                 receptive_field[m_key]["output_shape"][0] = batch_size
 
-        print(module.__class__.__name__)
+        print(str(module.__class__).split(".")[-1].split("'")[0])
         if (
             not isinstance(module, nn.Sequential)
             and not isinstance(module, nn.ModuleList)
             and not (module == model)
             and not isinstance(module, nn.Linear)
             # and module.__class__.__name__ != "Chomp1d"
-            # and module.__class__.__name__ != "WeightNorm"
+            and str(module.__class__).split(".")[-1].split("'")[0] != "WeightNorm"
             # and module.__class__.__name__ != "Dropout"
             # and module.__class__.__name__ != "TemporalBlock"
             # and module.__class__.__name__ != "SamePadConv"
