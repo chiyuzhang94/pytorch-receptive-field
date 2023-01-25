@@ -86,9 +86,9 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
         print(module.__class__.__name__)
         if (
             not isinstance(module, nn.Sequential)
-            and not isinstance(module, nn.ModuleList)
-            and not (module == model)
-            and not isinstance(module, nn.Linear)
+            # and not isinstance(module, nn.ModuleList)
+            # and not (module == model)
+            # and not isinstance(module, nn.Linear)
             and module.__class__.__name__ != "Chomp1d"
             and module.__class__.__name__ != "WeightNorm"
             and module.__class__.__name__ != "Dropout"
@@ -96,6 +96,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             and module.__class__.__name__ != "SamePadConv"
             and module.__class__.__name__ != "ConvBlock"
         ):  
+            print("in", "---"*20)
             hooks.append(module.register_forward_hook(hook))
 
     device = device.lower()
