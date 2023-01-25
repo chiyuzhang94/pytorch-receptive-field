@@ -97,6 +97,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             # and module.__class__.__name__ != "SamePadConv"
             # and module.__class__.__name__ != "ConvBlock"
         ):  
+            print(module)
             print("in", str(module.__class__).split(".")[-1].split("'")[0] + "\n---------")
             hooks.append(module.register_forward_hook(hook))
 
