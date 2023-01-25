@@ -83,7 +83,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
                 receptive_field[m_key]["output_shape"] = list(output.size())
                 receptive_field[m_key]["output_shape"][0] = batch_size
 
-        print(str(module.__class__).split(".")[-1].split("'")[0])
+        # print(str(module.__class__).split(".")[-1].split("'")[0])
         if (
             not isinstance(module, nn.Sequential)
             and not isinstance(module, nn.ModuleList)
@@ -97,7 +97,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             # and module.__class__.__name__ != "SamePadConv"
             # and module.__class__.__name__ != "ConvBlock"
         ):  
-            print("in", "---"*20)
+            print("in", str(module.__class__).split(".")[-1].split("'")[0] + "\n---"*20)
             hooks.append(module.register_forward_hook(hook))
 
     device = device.lower()
