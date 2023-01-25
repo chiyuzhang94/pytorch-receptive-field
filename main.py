@@ -35,6 +35,21 @@ class Net3D(nn.Module):
         y = self.maxpool(y)
         return y
 
+class Net1D(nn.Module):
+    def __init__(self):
+        super(Net1D, self).__init__()
+        self.conv = nn.Conv1d(3, 6, kernel_size=3, stride=1, padding=1, bias=False)
+        self.bn = nn.BatchNorm1d(6)
+        self.relu = nn.ReLU(inplace=True)
+        self.maxpool = nn.MaxPool1d(kernel_size=2, stride=2, padding=1)
+
+    def forward(self, x):
+        y = self.conv(x)
+        y = self.bn(y)
+        y = self.relu(y)
+        y = self.maxpool(y)
+        return y
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # PyTorch v0.4.0
 model = Net().to(device)
 
@@ -42,5 +57,10 @@ receptive_field_dict = receptive_field(model, (3, 256, 256))
 receptive_field_for_unit(receptive_field_dict, "2", (1,1))
 
 model = Net3D().to(device)
+receptive_field_dict = receptive_field(model, (3, 16, 16, 16))
+receptive_field_for_unit(receptive_field_dict, "2", (1,1,1))
+
+
+model = Net1D().to(device)
 receptive_field_dict = receptive_field(model, (3, 16, 16, 16))
 receptive_field_for_unit(receptive_field_dict, "2", (1,1,1))
