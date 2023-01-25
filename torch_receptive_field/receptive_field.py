@@ -26,6 +26,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
     def register_hook(module):
 
         def hook(module, input, output):
+            print(module)
             class_name = str(module.__class__).split(".")[-1].split("'")[0]
             print("class_name", class_name)
             module_idx = len(receptive_field)
