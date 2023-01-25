@@ -27,6 +27,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
 
         def hook(module, input, output):
             class_name = str(module.__class__).split(".")[-1].split("'")[0]
+            print("class_name", class_name)
             module_idx = len(receptive_field)
             m_key = "%i" % module_idx
             p_key = "%i" % (module_idx - 1)
@@ -67,7 +68,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
                     receptive_field[m_key]["r"] = 0
                     receptive_field[m_key]["start"] = 0
                 else:
-                    # raise ValueError("module {} not ok".format(class_name))
+                    raise ValueError("module {} not ok".format(class_name))
                     print("module {} not ok".format(class_name))
                     pass
             receptive_field[m_key]["input_shape"] = list(input[0].size()) # only one
