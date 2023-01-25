@@ -87,8 +87,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
                 receptive_field[m_key]["output_shape"][0] = batch_size
 
         if (
-            not isinstance(module, nn.Sequential)
-            and not isinstance(module, nn.ModuleList)
+            not isinstance(module, nn.ModuleList)
             and not (module == model)
             and not isinstance(module, nn.Linear)
         ):
