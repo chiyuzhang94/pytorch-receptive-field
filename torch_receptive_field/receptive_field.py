@@ -41,6 +41,7 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
                 receptive_field[m_key]["r"] = 0
                 receptive_field[m_key]["start"] = 0
             else:
+                print("p_key", p_key)
                 p_j = receptive_field[p_key]["j"]
                 p_r = receptive_field[p_key]["r"]
                 p_start = receptive_field[p_key]["start"]
