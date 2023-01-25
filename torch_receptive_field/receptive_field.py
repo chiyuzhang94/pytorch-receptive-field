@@ -91,7 +91,8 @@ def receptive_field(model, input_size, batch_size=-1, device="cuda"):
             and not isinstance(module, nn.ModuleList)
             and not (module == model)
             and not isinstance(module, nn.Linear)
-        ):
+        ):  
+            print("module", module)
             hooks.append(module.register_forward_hook(hook))
 
     device = device.lower()
